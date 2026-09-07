@@ -17,6 +17,7 @@ import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PricingEstimatorRouteImport } from './routes/pricing-estimator'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
@@ -60,6 +61,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/admin/services',
+  path: '/admin/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/pricing-estimator': typeof PricingEstimatorRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/services': typeof AdminServicesRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/pricing-estimator': typeof PricingEstimatorRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/services': typeof AdminServicesRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/pricing-estimator': typeof PricingEstimatorRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/services': typeof AdminServicesRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/pricing-estimator'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/services'
     | '/services/$slug'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/pricing-estimator'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/services'
     | '/services/$slug'
     | '/services'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/pricing-estimator'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/services'
     | '/services/$slug'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   PricingEstimatorRoute: typeof PricingEstimatorRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminServicesRoute: typeof AdminServicesRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/admin/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingEstimatorRoute: PricingEstimatorRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminServicesRoute: AdminServicesRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
